@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit book</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="mb-4">Edit Book Details</h1>
+    <form th:action="|/book/edit/${book.id}|" method="post">
+        <div class="form-group row">
+            <label for="bookName" class="col-sm-2 col-form-label">Book Name</label>
+            <div class="col-sm-10">
+                <input name="bookName" type="text" class="form-control" id="bookName" th:value="${book.name}" placeholder="Enter book name">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="bookPrice" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-10">
+                <input  name="price" type="text" class="form-control" id="bookPrice"  th:value="${book.price}" placeholder="Enter book price">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="bookAuthor" class="col-sm-2 col-form-label">Author</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="bookAuthor" name="authorId">
+                    <option>Select author</option>
+                    <option th:each="author:${authors}" th:text="${author.getFirstName()}" th:value="${author.getId()}"></option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

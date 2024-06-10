@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Author</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h2 class="mt-5">Edit Author</h2>
+    <form action="" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="number" id="price" name="price" class="form-control" required>
+        </div>
+        <div class="form-group row">
+            <label for="bookAuthor" class="col-sm-2 col-form-label">Author</label>
+            <div class="col-sm-10">
+                <select class="form-control" id="bookAuthor" name="authorId">
+                    <option>Select author</option>
+                    <option th:each="author:${authors}" th:text="${author.getFirstName()}" th:value="${author.getId()}"></option>
+                </select>
+            </div>
+        </div>
+        <a href="/author" class="btn btn-secondary mt-3">Cancel</a>
+        <button type="submit" class="btn btn-primary mt-3">Save</button>
+    </form>
+</div>
+<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>

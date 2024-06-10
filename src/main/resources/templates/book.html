@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<h1 class="bg-dark text-center text-white">Welcome</h1>
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid d-flex justify-content-center">
+        <a href="/author" class="btn btn-dark text-white mx-2" type="button">Author</a>
+        <a href="/book" class="btn btn-dark text-white mx-2" type="button">Book</a>
+        <a href="/book/importPage" class="btn btn-dark text-white mx-2" type="button">Import</a>
+        <a href="/book/export" class="btn btn-dark text-white mx-2" type="button">Export</a>
+        <a href="/book/add" class="btn btn-dark text-white mx-2" type="button">Add book</a>
+    </div>
+</nav>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>Function</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr th:each="book:${books}">
+                <td th:text="${book.id}"></td>
+                <td th:text="${book.name}"></td>
+                <td th:text="${book.price}"></td>
+                <td th:text="${book.author.getFirstName()}"></td>
+                <td th:text="${book.author.getLastName()}"></td>
+                <td class="d-flex mx-2">
+                    <a th:href="|/book/edit/${book.getId()}|" class="btn btn-info text-white">Edit</a>
+                    <form th:action="|/book/delete/${book.getId()}|" method="post">
+                        <button class="btn btn-danger text-white">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
